@@ -32,7 +32,7 @@ const Login = () => {
     if (res.ok) {
       const result = await res.json();
       console.log("로그인 성공", result);
-      navigate(-1);
+      navigate("/learning-test");
     } else {
       const error = await res.json();
       console.error("로그인 실패:", error.message);
