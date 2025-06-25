@@ -13,9 +13,8 @@ import StudyGame from "./feature/study/components/StudyGame";
 import QuizResult from "./feature/study/components/QuizResult";
 import AllStudyRoom from "./feature/study/components/AllStudyRoom";
 import StudyInfo from "./feature/study/components/StudyInfo";
-// import RankingHome from "./feature/ranking/RangingHome";
+import RankingHome from "./feature/ranking/RangingHome";
 import Home from "./feature/home/Home";
-import QuizAnalysis from "./feature/study/components/QuizAnalysis";
 import MyPage from "./feature/mypage/MyPage";
 
 function App() {
