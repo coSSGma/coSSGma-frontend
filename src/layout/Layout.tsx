@@ -20,16 +20,25 @@ export default function Layout() {
 
   const bgColor = location.pathname === "/learning" ? "bg-[#2E443E]" : "bg-[#F1F5F4]";
   const textColor = location.pathname === "/learning" ? "text-white" : "text-black";
+  const title = location.pathname === "/" ? "브루디" : "톡스터디";
 
   return (
     <div className={`h-screen flex flex-col`}>
-      <header className={`${bgColor} h-[129px] flex justify-center items-end border-b-[3.5px] border-[#D9E3E0]`}>
+      {location.pathname === "/" ? (
+        <header className={`${bgColor} h-[129px] flex items-end border-[#D9E3E0]`}>
+          <p className="text-[25px] font-extrabold px-20 py-10 text-[#1E624D]">브루디</p>
+        </header>
+      ) : (
+        <header className={`${bgColor} h-[129px] flex justify-center items-end border-b-[3.5px] border-[#D9E3E0]`}>
         <div className="w-full h-50 flex justify-between">
           <span className="ml-30 mt-5" onClick={handleNavigate}><img src={backIcon} alt="뒤로가기" width="11" height="25" /></span>
           <p className={`text-[18px] font-extrabold ${textColor}`}>톡스터디</p>
           <span className="mr-[15px] mt-5"><img src={settingIcon} alt="설정" width="26" height="26" /></span>
         </div>
       </header>
+      )
+      }
+      
       <main className="relative flex-1 min-h-0 overflow-y-auto">
         <Outlet />
       </main>
