@@ -26,7 +26,7 @@ export default function Layout() {
     <div className={`h-screen flex flex-col`}>
       {location.pathname === "/" ? (
         <header className={`${bgColor} h-[129px] flex items-end border-[#D9E3E0]`}>
-          <p className="text-[25px] font-extrabold px-20 py-10 text-[#1E624D]">브루디</p>
+          <p className="text-[25px] font-extrabold px-20 py-10 text-[#1E624D] font-ohsquare">브루디</p>
         </header>
       ) : (
         <header className={`${bgColor} h-[129px] flex justify-center items-end border-b-[3.5px] border-[#D9E3E0]`}>
