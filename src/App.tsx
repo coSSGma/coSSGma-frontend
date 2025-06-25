@@ -4,6 +4,7 @@ import Login from './feature/login/login';
 import Layout from './layout/Layout';
 import Home from './feature/home/Home';
 import StudyPage from './feature/study/StudyPage';
+import StudyStart from './feature/study/components/StudyStart';
 
 function App() {  
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route path='' element={<StudyPage />} />
+          <Route path='learning' element={<StudyStart />} />
         </Route>
         <Route path='/login' element={<Login />} />
       </Routes>
