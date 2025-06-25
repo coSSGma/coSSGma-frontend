@@ -55,7 +55,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <footer className="bg-white h-[105px] flex justify-evenly">
-        {location.pathname === "/" ? (
+        {location.pathname === "/home" ? (
           <img
             src={homeGreen}
             alt="홈"
