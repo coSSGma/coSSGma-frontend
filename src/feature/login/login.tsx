@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import brudyIcon from '../../assets/brudy.svg';
-import loginBGIcon from '../../assets/loginbg.svg';
-import loginBGIcon2 from '../../assets/loginbg2.svg';
+import brudyIcon from "../../assets/brudy.svg";
+import loginBGIcon from "../../assets/loginbg.svg";
+import loginBGIcon2 from "../../assets/loginbg2.svg";
 import { useAuthStore } from "../../store/useAuthStore";
-
 
 const Login = () => {
   const navigate = useNavigate();
   // const example = useExampleStore(state => state.example);
-  const setUserId = useAuthStore(state => state.setUserId);
-  const setName = useAuthStore(state => state.setName);
+  const setUserId = useAuthStore((state) => state.setUserId);
+  const setName = useAuthStore((state) => state.setName);
   const [formData, setFormData] = useState({
     id: "",
     password: "",
@@ -72,7 +71,7 @@ const Login = () => {
             <br />
             나와 잘 맞는 사람들과 자라는 공부
           </p>
-          <p className="text-[60px] text-[#1E624D] font-extrabold">브루디</p>
+          <p className="text-[60px] text-[#1E624D] font-ohsquare">브루디</p>
         </div>
         {loginEvent && (
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

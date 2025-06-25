@@ -6,3 +6,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: "Cafe24Ohsquare"; /* Tailwind에서 사용할 폰트 이름 */
+  src: url("/fonts/Cafe24Ohsquare-v2.0.woff2") format("woff2"),
+    url("/fonts/Cafe24Ohsquare-v2.0.ttf") format("truetype");
+  font-weight: normal; /* 폰트 파일의 실제 굵기에 맞게 조절 */
+  font-style: normal;
+  font-display: swap; /* 폰트 로딩 중 텍스트가 보이도록 설정 */
+}
