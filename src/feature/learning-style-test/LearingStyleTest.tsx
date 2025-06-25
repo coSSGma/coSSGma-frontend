@@ -6,7 +6,7 @@ const LearingStyleTest = () => {
   const { step } = useLearningStyleTestStore();
 
   if (step === 0) return <StartScreen />;
-  return <QuestionScreen />;
+  return <QuestionScreen questionProp='style'/>;
 };
 
 export default LearingStyleTest;

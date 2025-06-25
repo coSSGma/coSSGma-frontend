@@ -9,6 +9,8 @@ import StudyStart from './feature/study/components/StudyStart';
 import StudyMatching from './feature/matching/StudyMatching';
 import MatchingLoading from './feature/matching/MatchingLoading';
 import MatchedStudyRoom from './feature/matching/MatchedStudyRoom';
+import StudyGame from './feature/study/components/StudyGame';
+import QuizResult from './feature/study/components/QuizResult';
 
 function App() {  
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route path='' element={<StudyPage />} />
           <Route path='learning' element={<StudyStart />} />
+          <Route path='participate' element={<StudyGame />} />
+          <Route path='quiz/result' element={<QuizResult />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/learning-test" element={<LearingStyleTest />} />

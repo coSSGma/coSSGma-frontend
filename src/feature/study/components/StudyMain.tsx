@@ -30,7 +30,7 @@ const StudyMain = () => {
         </div>
         <div 
           className='w-full h-[66px] rounded-xl bg-[#D9D9D9] flex items-center py-[10px] px-[20px] justify-between'
-          onClick={() => handleMenu('learning')}
+          onClick={() => handleMenu('groupboard')}
         >
           <div>이미지</div>
           <h2 className='text-right text-[20px] font-bold'>그룹 게시판</h2>
@@ -44,7 +44,7 @@ const StudyMain = () => {
         </div>
         <div
           className='w-full h-[66px] rounded-xl bg-[#D9D9D9] flex items-center py-[10px] px-[20px] justify-between'
-          onClick={() => handleMenu('Participate')}
+          onClick={() => handleMenu('participate')}
         >
           <div>이미지</div>
           <div className='flex flex-col'>
