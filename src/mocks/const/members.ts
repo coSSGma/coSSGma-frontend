@@ -9,7 +9,7 @@ export const members = [
   },
   {
     id: 3,
-    name: "홍길동"
+    name: "남해윤"
   },
   {
     id: 4,
