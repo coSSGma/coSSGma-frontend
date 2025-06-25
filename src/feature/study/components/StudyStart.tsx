@@ -35,20 +35,20 @@ const StudyStart = () => {
 
 
   return (
-    <div className='h-full flex flex-col gap-30 items-center justify-center'>
-      <p className="text-[28px] ">학습 시간</p>
+    <div className='h-full flex flex-col gap-30 items-center justify-center bg-[#2E443E]'>
+      <p className="text-[28px] text-white">학습 시간</p>
       <div className="flex flex-col items-center">
-        <h1 className="text-[65px] font-bold">{formatTime(seconds)}</h1>
+        <h1 className="text-[65px] font-bold text-[#2AFFBE]">{formatTime(seconds)}</h1>
         <div className="flex gap-10">
           <button
             onClick={handleStop}
-            className="w-[154px] h-[53px] px-4 py-2 bg-[#D9D9D9] rounded-3xl font-extrabold"
+            className="w-[154px] h-[53px] px-4 py-2 bg-[#C4EFE2] rounded-3xl font-extrabold"
           >
             그만하기
           </button>
           <button
             onClick={handlePause}
-            className="w-[154px] h-[53px] px-4 py-2 bg-[#D9D9D9] rounded-3xl font-extrabold"
+            className="w-[154px] h-[53px] px-4 py-2 bg-[#2AFFBE] rounded-3xl font-extrabold"
           >
             {isRunning ? "일시정지" : "시작"}
           </button>

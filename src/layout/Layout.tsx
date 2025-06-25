@@ -1,19 +1,24 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import backIcon from "../assets/backIcon.svg";
 
 export default function Layout() {
   const navigate = useNavigate();
-
+  const location = useLocation();
+console.log(location.pathname);
   const handleNavigate = () => {
     navigate(-1);
   }
 
+  // 경로에 따라 배경색 결정
+  const bgColor = location.pathname === "/learning" ? "bg-[#2E443E]" : "bg-[#F1F5F4]";
+  const textColor = location.pathname === "/learning" ? "text-white" : "text-black";
+
   return (
-    <div className="h-screen flex flex-col">
-      <header className="bg-[#F1F5F4] h-[129px] flex justify-center items-end border-b-[3.5px] border-[#D9E3E0]">
+    <div className={`h-screen flex flex-col`}>
+      <header className={`${bgColor} h-[129px] flex justify-center items-end border-b-[3.5px] border-[#D9E3E0]`}>
         <div className="w-full h-50 flex justify-between">
           <span className="ml-30 mt-5" onClick={handleNavigate}><img src={backIcon} alt="뒤로가기" width="11" height="25" /></span>
-          <p className="text-[18px] font-extrabold">톡스터디</p>
+          <p className={`text-[18px] font-extrabold ${textColor}`}>톡스터디</p>
           <span className="w-[41px]"></span>
         </div>
       </header>
