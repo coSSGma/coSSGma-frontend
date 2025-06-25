@@ -5,6 +5,7 @@ import memberIcon from "../../../assets/member.svg";
 import backIcon from "../../../assets/prev.svg";
 import nextIcon from "../../../assets/next.svg";
 import bromem from "../../../assets/bromem.svg";
+import star2 from "../../../assets/star2.svg";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../../../store/useAuthStore";
 
@@ -122,7 +123,7 @@ const StudyInfo = () => {
           className="w-full h-[66px] rounded-xl bg-white flex items-center py-[10px] px-[20px] justify-between"
           onClick={() => handleMenu("/ranking")}
         >
-          <div className="w-27 h-27 rounded-full bg-[#BCBCBC]"></div>
+          <img src={star2} alt="star2" width={31} height={31} />
           <h2 className="text-right text-[20px] text-[#006244] font-bold">
             그룹 랭킹
           </h2>

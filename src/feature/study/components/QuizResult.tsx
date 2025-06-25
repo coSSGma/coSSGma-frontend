@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import water from "../../../assets/water.svg";
 
 interface SubmissionProp {
   answer: string;
@@ -11,16 +12,27 @@ const QuizResult = () => {
   const { state } = useLocation();
   const submissions: SubmissionProp[] = state?.submissions || [];
   const [view, setView] = useState(false);
+  const [result, setResult] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
   const navigate = useNavigate();
 
-  // 정답 수 계산
   const correctCount = useMemo(() =>
     submissions.filter((sub) => sub.answer === sub.selected).length
   , [submissions]);
 
+  useEffect(() => {
+    if (view && result) {
+      setTimeout(() => setFadeIn(true), 10);
+    } else {
+      setFadeIn(false);
+    }
+  }, [view, result]);
+
   const handleNext = () => {
     if(!view) {
       setView(true);
+    } else if(!result) {
+      setResult(true);
     } else {
       navigate('/study/info');
     }
@@ -55,7 +67,7 @@ const QuizResult = () => {
         </div>
       </div>
       )}
-      {view && (
+      {view && !result && (
         <div className="w-[340px] bg-white rounded-2xl shadow-md p-6 border border-[#E2E8F0] flex flex-col gap-5 mt-10">
           <div>
             <p className="text-[17px] font-bold text-[#1E624D] mb-2">현재 성향 분석</p>
@@ -66,16 +78,27 @@ const QuizResult = () => {
           <div>
             <p className="text-[17px] font-bold text-[#1E624D] mb-2">추천 학습 방식</p>
             <ul className="text-[14px] text-[#222] leading-relaxed list-disc list-inside space-y-1">
-              <li>“타임라인 중심 학습” – 과학사의 흐름을 시각적으로 정리하기</li>
+              <li>"타임라인 중심 학습" – 과학사의 흐름을 시각적으로 정리하기</li>
               <li>스토리 기반 영상 시청 – 인물 중심 다큐/영상으로 접근하기</li>
-              <li>“인물 카드 만들기” – 과학자별 한 장 요약 카드</li>
+              <li>"인물 카드 만들기" – 과학자별 한 장 요약 카드</li>
             </ul>
           </div>
         </div>
       )}
+      {view && result && (
+        <div
+          className={`flex flex-col items-center justify-center min-h-[60vh] w-full transition-opacity duration-700 ${fadeIn ? "opacity-100" : "opacity-0"}`}
+        >
+          <p className="text-[22px] font-bold text-[#39695C] mb-10 text-center leading-snug">
+            퀴즈 풀기 성공!<br />물 1개를 획득했어요
+          </p>
+          <img src={water} alt="water" className="w-[80px] h-[100px] mt-10 mb-20" />
+          <p className="text-18">획득한 물은 <span className="font-extrabold text-20 text-[#39695C]">브루디</span>를 키우는 데 사용돼요!</p>
+        </div>
+      )}
       <button 
         onClick={handleNext}
-        className="absolute bottom-[40px] w-[309px] h-62 rounded-3xl bg-[#1E624D] text-white"
+        className="absolute bottom-[40px] w-[309px] h-62 rounded-3xl bg-[#1E624D] text-white font-extrabold"
       >
         다음
       </button>
