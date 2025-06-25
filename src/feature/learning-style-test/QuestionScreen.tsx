@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react';
 import { useLearningStyleTestStore } from '../../store/learningStyleTestStore';
-import { questions } from './questions';
 import { useNavigate } from 'react-router-dom'; // React Router 사용
 
 // Question 인터페이스: 질문의 구조를 정의, id를 number로 수정
@@ -10,13 +10,34 @@ interface Question {
   options: string[];   // 답변 옵션 배열 (A, B, C, D 등)
 }
 
-const QuestionScreen = () => {
+interface QuestionScreenProps {
+  questionProp: string;
+}
+
+const QuestionScreen = ({ questionProp }: QuestionScreenProps) => {
   const navigate = useNavigate(); // 경로 이동을 위한 navigate 훅
   const { step, goNext, selectAnswer, answers } = useLearningStyleTestStore();
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const endpoint = `/api/${questionProp}`;
+    
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        setQuestions(data.data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="h-screen flex justify-center items-center text-xl">로딩 중...</div>;
+  }
 
   const validStep = Math.min(step, questions.length);
   const question = validStep > 0 ? (questions[validStep - 1] as unknown as Question) : null;
-
+console.log(question);
   if (!question) {
     return <div>질문 데이터가 없습니다. step 또는 questions 배열을 확인하세요.</div>;
   }
@@ -94,7 +115,11 @@ const QuestionScreen = () => {
         onClick={() => {
           if (validStep === questions.length && selected) {
             // 백엔드 호출 대신 바로 /result 경로로 이동
-            navigate('/result');
+            if(questionProp === "style") {
+              navigate('/result');
+            } else if(questionProp === "quiz") {
+              navigate('/quiz/result');
+            }
           } else {
             goNext();
           }

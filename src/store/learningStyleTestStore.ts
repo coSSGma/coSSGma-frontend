@@ -14,7 +14,7 @@ interface LearningStyleTestState {
 }
 
 export const useLearningStyleTestStore = create<LearningStyleTestState>((set) => ({
-  step: 0,
+  step: 1,
   answers: [],
   goNext: () => set((state) => ({ step: state.step + 1 })),
   selectAnswer: (questionId, answer) =>
