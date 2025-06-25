@@ -38,7 +38,7 @@ const TestResult = () => {
     <div className="h-full">
       {/* QuestionScreen의 질문 내용 및 진행률 바 섹션과 유사한 구조 */}
       <div className="absolute top-100 w-full px-30 text-center">
-        {/* "{username}님의 학습 성향은" 제목 */}
+        {/* "{user}님의 학습 성향은" 제목 */}
         <p className="text-[16px] text-black mb-[5%]">{name}님의 학습 성향은</p>
 
         {/* 학습 성향 (가장 큰 텍스트) */}

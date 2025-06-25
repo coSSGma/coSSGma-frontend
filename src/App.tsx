@@ -1,19 +1,20 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './feature/login/login';
-import Layout from './layout/Layout';
-import LearingStyleTest from './feature/learning-style-test/LearingStyleTest';
-import TestResult from './feature/learning-style-test/TestResult';
-import StudyPage from './feature/study/StudyPage';
-import StudyStart from './feature/study/components/StudyStart';
-import StudyMatching from './feature/matching/StudyMatching';
-import MatchingLoading from './feature/matching/MatchingLoading';
-import MatchedStudyRoom from './feature/matching/MatchedStudyRoom';
-import StudyGame from './feature/study/components/StudyGame';
-import QuizResult from './feature/study/components/QuizResult';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./feature/login/login";
+import Layout from "./layout/Layout";
+import LearingStyleTest from "./feature/learning-style-test/LearingStyleTest";
+import TestResult from "./feature/learning-style-test/TestResult";
+import StudyPage from "./feature/study/StudyPage";
+import StudyStart from "./feature/study/components/StudyStart";
+import StudyMatching from "./feature/matching/StudyMatching";
+import MatchingLoading from "./feature/matching/MatchingLoading";
+import MatchedStudyRoom from "./feature/matching/MatchedStudyRoom";
+import StudyGame from "./feature/study/components/StudyGame";
+import QuizResult from "./feature/study/components/QuizResult";
+import AllStudyRoom from "./feature/study/components/AllStudyRoom";
 import Home from './feature/home/Home';
 
-function App() {  
+function App() {
   return (
     <Router>
       <Routes>
@@ -23,12 +24,13 @@ function App() {
         <Route path="/study-matching" element={<StudyMatching />} />
         <Route path="/matching-study-room" element={<MatchingLoading />} />
         <Route path="/matched-study-room" element={<MatchedStudyRoom />} />
-        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route path='' element={<Home />} />
-          <Route path='study' element={<StudyPage />} />
-          <Route path='learning' element={<StudyStart />} />
-          <Route path='participate' element={<StudyGame />} />
-          <Route path='quiz/result' element={<QuizResult />} />
+          <Route path="study-main" element={<StudyPage />} />
+          <Route path="study-main/all-study-rooms" element={<AllStudyRoom />} />
+          <Route path="learning" element={<StudyStart />} />
+          <Route path="participate" element={<StudyGame />} />
+          <Route path="quiz/result" element={<QuizResult />} />
         </Route>
       </Routes>
     </Router>

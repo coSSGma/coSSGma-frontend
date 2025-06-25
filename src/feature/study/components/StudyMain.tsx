@@ -1,104 +1,137 @@
-import { useNavigate } from 'react-router-dom';
-import tableIcon from '../../../assets/study_table.svg';
-import playIcon from '../../../assets/play.svg';
-import memberIcon from '../../../assets/member.svg';
-import backIcon from '../../../assets/prev.svg';
-import nextIcon from '../../../assets/next.svg';
-import bromem from '../../../assets/bromem.svg';
-import { useEffect, useState } from 'react';
-import { useAuthStore } from '../../../store/useAuthStore';
+import { useNavigate } from "react-router-dom";
 
-interface MemberProps {
-  id: number,
-  name: string,
+// 스터디룸 카드에 표시될 데이터의 인터페이스 정의
+interface StudyRoom {
+  id: string;
+  name: string;
+  course: string;
+  exist: boolean;
+  currentMembers: number;
+  maxMembers: number;
+  todayStudyTime?: string; // 오늘 학습 시간 (선택 사항)
+  participationRate?: string; // 참여도 (선택 사항)
+  isRecommended?: boolean; // 추천 스터디룸 여부
 }
 
-const StudyMain = () => { 
+const StudyMain = () => {
   const navigate = useNavigate();
-  const [members, setMembers] = useState<MemberProps[]>([]);
-  const [cur, setCur] = useState(1);
-  const loginName = useAuthStore(state => state.name);
-  
-  const handleMenu = (menu: string) => {
-    navigate(`${menu}`);
-  }
+  // 참여 중인 스터디룸 mock 데이터
+  const participatingStudyRooms: StudyRoom[] = [
+    {
+      id: "room1",
+      name: "톡스터디",
+      course: "과학사",
+      exist: true,
+      currentMembers: 20,
+      maxMembers: 50,
+      todayStudyTime: "6시간",
+      participationRate: "78%",
+    },
+    {
+      id: "room2",
+      name: "토론디",
+      course: "문제해결을 위한 글쓰기와 발표",
+      exist: false,
+      currentMembers: 8,
+      maxMembers: 50,
+      todayStudyTime: "1시간",
+      participationRate: "56%",
+    },
+  ];
 
-  useEffect(() => {
-    fetch('/api/members')
-      .then((res) => res.json())
-      .then((data) => {
-        setMembers(data.data);
-      });
-  }, []);
-  
-  const slicedMembers = members.slice((cur - 1) * 10, cur * 10);
-
-  const handleSilde = (move: string) => {
-    if(move === "prev" && cur !== 1) {
-      setCur(cur - 1);
-    } else if(move === "next" && cur !== Math.ceil(members.length / 10)) {
-      setCur(cur + 1)
-    }
-  }
+  // 추천 스터디룸 mock 데이터
+  const recommendedStudyRooms: StudyRoom[] = [
+    {
+      id: "room3",
+      name: "컴네모여",
+      course: "컴퓨터네트워크",
+      exist: true,
+      currentMembers: 40,
+      maxMembers: 50,
+      isRecommended: true,
+    },
+  ];
 
   return (
-    <div className='h-full bg-[#F1F5F4] pt-15'>
-      <div className='h-[8%] flex justify-between mx-15 mb-20 rounded-2xl shadow bg-white'>
-        <div className='h-full w-[50%] flex flex-col justify-center items-start p-20'>
-          <p className='text-[10px]'>다음 스터디 일정</p>
-          <p className='text-[16px] font-semibold'>25년 6월 27일</p>
-        </div>
-        <div className='h-full w-[50%] flex flex-col justify-center items-start p-20'>
-          <p className='text-[10px]'>그룹 달성률</p>
-          <p className='text-[16px] font-semibold'>89%</p>
-        </div>
-      </div>
-      <div className='h-fit flex flex-col items-center p-10 mx-15 rounded-2xl shadow bg-white'>
-        <p className='h-[20%] mb-20'>스터디원 {members.length}/50</p>
-        <div className='flex gap-21'>
-          {slicedMembers.slice(0, 5).map((member) => (
-            <div key={member.id} className='flex flex-col items-center' >
-              {member.name === loginName ? (<img src={bromem} alt={`멤버${member.id}`} width='29px' height='33px' />) 
-              : (<img src={memberIcon} alt={`멤버${member.id}`} width='29px' height='33px' />)}
-              <p className='text-10'>{member.name}</p>
+    // Layout의 main 태그 안에 들어가므로, flex-1과 overflow-y-auto는 Layout에서 처리됩니다.
+    // 여기서는 콘텐츠의 내부 패딩과 정렬만 담당합니다.
+    <div className="flex flex-col items-center p-4 bg-[#F1F5F4] min-h-full">
+      {/* 참여 중인 스터디룸 섹션 */}
+      <div className="w-[90%] max-w-md px-4 mt-[5%]">
+        <p className="text-[15px] text-gray-600 font-semibold text-left mb-4">
+          참여 중인 스터디룸
+        </p>
+        <div className="flex flex-col gap-4 mb-8">
+          {participatingStudyRooms.map((room) => (
+            <div
+              key={room.id}
+              className="bg-white rounded-xl shadow-sm p-4 flex flex-col items-start border-1 border-[#C7C7C7] mb-[10px]"
+            >
+              <div className="flex justify-between items-center w-full mb-2 mx-[10px]">
+                <h2 className="text-[20px] font-semibold text-black">
+                  {room.name}
+                </h2>
+                <span
+                  className={`w-15 h-15 rounded-full mr-[20px] ${
+                    room.exist ? "bg-[#00CE8E]" : "bg-[#B3B3B3]"
+                  }`}
+                ></span>
+              </div>
+              <p className="text-[12px] font-normal text-gray-500 mb-4 mx-[10px]">
+                {room.course} | {room.currentMembers}/{room.maxMembers}
+              </p>
+              <div className="flex justify-start w-full text-left mt-[5px]">
+                <div className="flex flex-col items-start ml-[10px]">
+                  <p className="text-[12px] text-gray-600">금일 학습 시간</p>
+                  <p className="text-[16px] font-bold text-[#1E624D]">
+                    {room.todayStudyTime}
+                  </p>
+                </div>
+                <div className="flex flex-col items-center ml-[30%]">
+                  <p className="text-[12px] text-gray-600">참여도</p>
+                  <p className="text-[16px] font-bold text-[#1E624D]">
+                    {room.participationRate}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-        <div className='h-[80%] flex justify-center my-5 gap-5'>
-          <img src={backIcon} alt='이전' width='11' height='16' onClick={() => handleSilde("prev")} />
-          <img src={tableIcon} alt="테이블이미지" width="302" height="54" />
-          <img src={nextIcon} alt='다음' width='11' height='16' onClick={() => handleSilde("next")} />
-        </div>
-        <div className='flex gap-21'>
-          {slicedMembers.slice(5, 10).map((member) => (
-            <div key={member.id} className='flex flex-col items-center' >
-              <img src={memberIcon} alt={`멤버${member.id}`} width='29px' height='33px' />
-              <p className='text-10'>{member.name}</p>
-            </div>
-          ))}
+        {/* 스터디룸 추가 (+) 버튼 */}
+        <div className="flex justify-center mb-8">
+          <button className="w-18 h-18 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-3xl font-light">
+            <img src="src/assets/plus-button.svg" alt="plus-button" />
+          </button>
         </div>
       </div>
-      <div className='h-[55%] mx-15 my-10 flex flex-col gap-[15px]'>
-        <div
-          className='w-full h-[62px] rounded-[40px] bg-[#1E624D] flex items-center p-[20px] justify-center mt-20 mb-20'
-          onClick={() => handleMenu('learning')}
-        >
-          <img src={playIcon} alt="시작하기" width="25" height="25" />
-          <h2 className='text-right text-[20px] ml-10 text-white font-bold'>학습 시작하기</h2>
+
+      {/* 추천 스터디룸 섹션 */}
+      <div className="w-[90%] max-w-md px-4">
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-[15px] text-gray-600 font-semibold text-left mb-4">
+            추천 스터디룸
+          </p>
+          <button
+            className="text-[12px] font-light text-gray-500 hover:underline"
+            onClick={() => navigate("/study-main/all-study-rooms")}
+          >
+            전체 보기
+          </button>
         </div>
-        <div 
-          className='w-full h-[66px] rounded-xl bg-white flex items-center py-[10px] px-[20px] justify-between'
-          onClick={() => handleMenu('ranking')}
-        >
-          <div className='w-27 h-27 rounded-full bg-[#BCBCBC]'></div>
-          <h2 className='text-right text-[20px] text-[#006244] font-bold'>그룹 랭킹</h2>
-        </div>
-        <div
-          className='w-full h-[66px] rounded-xl bg-white flex items-center py-[10px] px-[20px] justify-between'
-          onClick={() => handleMenu('participate')}
-        >
-          <div className='w-27 h-27 rounded-full bg-[#BCBCBC]'></div>
-          <h2 className='text-right text-[20px] text-[#006244] font-extrabold'>그룹 퀴즈 참가하기</h2>
+        <div className="flex flex-col">
+          {recommendedStudyRooms.map((room) => (
+            <div
+              key={room.id}
+              className="bg-white rounded-xl shadow-sm p-4 flex flex-col items-start border-1 border-[#C7C7C7] mb-[10px]"
+            >
+              <h2 className="text-[20px] font-semibold text-black mx-[10px] mt-[10px]">
+                {room.name}
+              </h2>
+              <p className="text-[12px] font-semibold text-gray-500 mx-[10px] mb-[10px]">
+                {room.course} | {room.currentMembers}/{room.maxMembers}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
