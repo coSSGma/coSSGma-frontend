@@ -8,10 +8,6 @@ const MatchingLoading = () => {
   // 임시 사용자 이름 (실제 앱에서는 props 또는 전역 상태에서 가져올 수 있습니다)
   const userName: string = "홍길동"; // 예시 사용자 이름
 
-  // 로딩 이미지 URL (회색 배경에 X 표시 플레이스홀더)
-  const loadingImage =
-    "https://via.placeholder.com/200x200/cccccc/000000?text=X";
-
   // 컴포넌트가 마운트될 때 2초 타이머를 설정합니다.
   useEffect(() => {
     // 2초(2000ms) 후에 /matched-study-room 경로로 이동합니다.
@@ -37,11 +33,11 @@ const MatchingLoading = () => {
       </p>
 
       {/* 로딩 이미지 영역 */}
-      <div className="w-[80%] max-w-[200px] h-[200px] mx-auto mb-[20%] flex items-center justify-center bg-gray-200 rounded-md overflow-hidden">
+      <div className="w-full max-w-[200px] h-full mx-auto mb-[20%] flex items-center justify-center rounded-md overflow-hidden">
         <img
-          src={loadingImage}
+          src="src/assets/matching-brudy.svg"
           alt="로딩 이미지"
-          className="w-[70%] h-[70%] object-cover"
+          className="w-full h-full object-cover"
         />
         {/* 실제 로딩 애니메이션을 여기에 추가할 수 있습니다.
                     예: <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-blue-500"></div>
