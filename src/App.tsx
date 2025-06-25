@@ -23,7 +23,7 @@ function App() {
         <Route path="/matching-study-room" element={<MatchingLoading />} />
         <Route path="/matched-study-room" element={<MatchedStudyRoom />} />
         <Route path='/' element={<Layout />}>
-          <Route path='' element={<StudyPage />} />
+          <Route path='study' element={<StudyPage />} />
           <Route path='learning' element={<StudyStart />} />
           <Route path='participate' element={<StudyGame />} />
           <Route path='quiz/result' element={<QuizResult />} />
