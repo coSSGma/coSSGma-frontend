@@ -17,8 +17,8 @@ const Login = () => {
 
   const mockUser = {
     userid: 1,
-    name: "홍길동",
-    id: "12345678",
+    name: "남해윤",
+    id: "21011841",
     password: "1234",
   };
 
