@@ -12,7 +12,6 @@ import MatchedStudyRoom from "./feature/matching/MatchedStudyRoom";
 import StudyGame from "./feature/study/components/StudyGame";
 import QuizResult from "./feature/study/components/QuizResult";
 import AllStudyRoom from "./feature/study/components/AllStudyRoom";
-import Home from './feature/home/Home';
 import StudyInfo from "./feature/study/components/StudyInfo";
 import RankingHome from "./feature/ranking/RangingHome";
 import Home from "./feature/home/Home";
