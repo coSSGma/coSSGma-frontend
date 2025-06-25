@@ -3,7 +3,6 @@ import Quiz from "./Quiz";
 
 const StudyGame = () => {
   const [gameStart, setGameStart] = useState(false);
-  const [quiz, setQuiz] = useState([]);
 
   const handleStart = () => {
     setGameStart(true);

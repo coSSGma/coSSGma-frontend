@@ -26,7 +26,7 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch('/api/quiz');
+        const response = await fetch('http://localhost:8080/quiz/start');
         if (!response.ok) {
           throw new Error('퀴즈 데이터를 불러오지 못했습니다.');
         }
