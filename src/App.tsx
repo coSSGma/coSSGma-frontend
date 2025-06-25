@@ -6,6 +6,9 @@ import LearingStyleTest from './feature/learning-style-test/LearingStyleTest';
 import TestResult from './feature/learning-style-test/TestResult';
 import StudyPage from './feature/study/StudyPage';
 import StudyStart from './feature/study/components/StudyStart';
+import StudyMatching from './feature/matching/StudyMatching';
+import MatchingLoading from './feature/matching/MatchingLoading';
+import MatchedStudyRoom from './feature/matching/MatchedStudyRoom';
 import StudyGame from './feature/study/components/StudyGame';
 import QuizResult from './feature/study/components/QuizResult';
 
@@ -22,6 +25,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/learning-test" element={<LearingStyleTest />} />
         <Route path="/result" element={<TestResult />} />
+        <Route path="/study-matching" element={<StudyMatching />} />
+        <Route path="/matching-study-room" element={<MatchingLoading />} />
+        <Route path="/matched-study-room" element={<MatchedStudyRoom />} />
       </Routes>
     </Router>
   );
