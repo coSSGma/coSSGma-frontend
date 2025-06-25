@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 interface QuizProp {
@@ -26,19 +27,21 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch('http://localhost:8080/quiz/start');
-        if (!response.ok) {
-          throw new Error('퀴즈 데이터를 불러오지 못했습니다.');
-        }
-        const data = await response.json();
-        setQuizData(data.data);
-        setSubmits(data.data.map((q: QuizProp) => ({
+        const response = await axios.post('http://localhost:8080/quiz/start', { context: '테스트 문구 입니다.' });
+        setQuizData(response.data.data);
+        setSubmits(response.data.data.map((q: QuizProp) => ({
           question: q.question,
           selected: null,
           answer: q.answer,
         })));
       } catch (err) {
-        setError(err instanceof Error ? err.message : '알 수 없는 오류 발생');
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data?.message || '퀴즈 데이터를 불러오지 못했습니다.');
+        } else if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('알 수 없는 오류 발생');
+        }
       } finally {
         setLoading(false);
       }
