@@ -5,31 +5,19 @@ import memberIcon from "../../../assets/member.svg";
 import backIcon from "../../../assets/prev.svg";
 import nextIcon from "../../../assets/next.svg";
 import bromem from "../../../assets/bromem.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuthStore } from "../../../store/useAuthStore";
-
-interface MemberProps {
-  id: number;
-  name: string;
-}
+import { memberList } from "../../../mocks/const/members";
 
 const StudyInfo = () => {
   const navigate = useNavigate();
-  const [members, setMembers] = useState<MemberProps[]>([]);
+  const [members] = useState(memberList);
   const [cur, setCur] = useState(1);
   const loginName = useAuthStore((state) => state.name);
 
   const handleMenu = (menu: string) => {
     navigate(`${menu}`);
   };
-
-  useEffect(() => {
-    fetch("/api/members")
-      .then((res) => res.json())
-      .then((data) => {
-        setMembers(data.data);
-      });
-  }, []);
 
   const slicedMembers = members.slice((cur - 1) * 10, cur * 10);
 

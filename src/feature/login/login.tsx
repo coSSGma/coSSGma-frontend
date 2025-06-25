@@ -7,7 +7,6 @@ import { useAuthStore } from "../../store/useAuthStore";
 
 const Login = () => {
   const navigate = useNavigate();
-  // const example = useExampleStore(state => state.example);
   const setUserId = useAuthStore((state) => state.setUserId);
   const setName = useAuthStore((state) => state.setName);
   const [formData, setFormData] = useState({
@@ -15,6 +14,13 @@ const Login = () => {
     password: "",
   });
   const [loginEvent, setLoginEvent] = useState(false);
+
+  const mockUser = {
+    userid: 1,
+    name: "홍길동",
+    id: "12345678",
+    password: "1234",
+  };
 
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,26 +32,12 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch(`/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: formData.id,
-        password: formData.password,
-      }),
-    });
-
-    if (res.ok) {
-      const result = await res.json();
-      console.log("로그인 성공", result);
-      setUserId(result.data.userid);
-      setName(result.data.name);
+    if (formData.id === mockUser.id && formData.password === mockUser.password) {
+      setUserId(mockUser.userid);
+      setName(mockUser.name);
       navigate("/learning-test");
     } else {
-      const error = await res.json();
-      console.error("로그인 실패:", error.message);
+      alert("이메일 또는 비밀번호가 올바르지 않습니다.");
     }
   };
 
