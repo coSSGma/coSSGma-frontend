@@ -3,7 +3,9 @@ import { Outlet } from "react-router-dom";
 export default function Layout() {
   return (
     <div className="h-screen flex flex-col">
-      <header className="bg-[#D9D9D9] h-[116px]">Header</header>
+      <header className="bg-[#D9D9D9] h-[116px] flex justify-center items-center">
+        <p className="text-[18px] font-extrabold">얼레벌레열심히</p>
+      </header>
       <main className="relative flex-1 min-h-0 overflow-y-auto">
         <Outlet />
       </main>
