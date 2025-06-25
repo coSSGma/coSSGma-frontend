@@ -24,7 +24,7 @@ const MatchedStudyRoom = () => {
 
   const handleEnterRoom = () => {
     // '입장하기' 버튼 클릭 시 동작할 로직
-    navigate("/");
+    navigate("/Home");
     // 예: navigate('/study-room-detail/${studyRoom.roomName}');
     // alert('스터디룸에 입장합니다!');
   };

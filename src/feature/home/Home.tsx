@@ -2,6 +2,7 @@ import brudySeed from '../../assets/brudySeed.svg';
 import union from '../../assets/Union.svg';
 import star from '../../assets/star.svg';
 import water from '../../assets/water.svg';
+import { useNavigate } from 'react-router-dom';
 
 const studyRoom = [
   {
@@ -19,6 +20,8 @@ const studyRoom = [
 ]
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="h-full bg-[#F1F5F4] p-20">
       <div className='w-full pt-30 px-20 flex justify-center'>
@@ -50,7 +53,7 @@ const Home = () => {
       </div>
       <span className='text-12'>참여 중인 스터디룸</span>
       {studyRoom.map((study) => (
-        <div className='w-full h-60 bg-white rounded-2xl border-3 flex my-5 items-center px-20'>
+        <div onClick={() => navigate('/study/info')} className='w-full h-60 bg-white rounded-2xl border-3 flex my-5 items-center px-20'>
           <p className='text-20 font-extrabold w-[30%]'>{study.name}</p>
           <span className='w-[65%]'>{study.class} | {study.member}/50</span>
           <span 

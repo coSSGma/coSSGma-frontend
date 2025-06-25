@@ -55,7 +55,7 @@ const RankingHome = () => {
         {rankings.map((entry, index) => (
           <div
             key={index}
-            className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0"
+            className="flex justify-between items-center pr-10 py-2 border-b border-gray-200 last:border-b-0"
           >
             <p className="font-bold text-gray-700 w-1/4 ml-20">{entry.rank}</p>
             <p className="text-gray-600 w-50">{entry.name}</p>

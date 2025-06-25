@@ -48,14 +48,16 @@ const Login = () => {
   return (
     <>
       <div className="h-full">
-        <div className="absolute top-[11px] left-[-122px]">
-          <img src={loginBGIcon} alt="로그인 배경" width="367" height="367" />
-        </div>
-        <div className="absolute top-[334px] left-[107px]">
-          <img src={loginBGIcon2} alt="로그인 배경2" width="523" height="104" />
-        </div>
-        <div className="absolute top-[334px] left-[107px]">
-          <img src={brudyIcon} alt="브루디" width="341" height="362" />
+        <div className={`transition-opacity duration-300 ease-in-out ${loginEvent ? 'opacity-0' : 'opacity-100'}`}>
+          <div className="absolute top-[11px] left-[-122px]">
+            <img src={loginBGIcon} alt="로그인 배경" width="367" height="367" />
+          </div>
+          <div className="absolute top-[334px] left-[107px]">
+            <img src={loginBGIcon2} alt="로그인 배경2" width="523" height="104" />
+          </div>
+          <div className="absolute top-[334px] left-[107px]">
+            <img src={brudyIcon} alt="브루디" width="341" height="362" />
+          </div>
         </div>
         <div className="absolute p-30 top-200">
           <p className="text-[16px] text-[#455153] font-extrabold">
@@ -66,7 +68,7 @@ const Login = () => {
           <p className="text-[60px] text-[#1E624D] font-ohsquare">브루디</p>
         </div>
         {loginEvent && (
-          <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className={`mt-8 sm:mx-auto sm:w-full sm:max-w-md transition-opacity duration-300 ease-in-out opacity-100`}>
             <div className="bg-white py-8 px-6 shadow-sm rounded-lg">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="absolute bottom-80 w-full px-30">
