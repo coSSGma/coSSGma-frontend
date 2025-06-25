@@ -1,6 +1,5 @@
 import { useState } from "react";
-import QuestionScreen from "../../learning-style-test/QuestionScreen";
-
+import Quiz from "./Quiz";
 
 const StudyGame = () => {
   const [gameStart, setGameStart] = useState(false);
@@ -28,7 +27,7 @@ const StudyGame = () => {
         </div>
       )}
       {gameStart && (
-        <QuestionScreen questionProp="quiz" />
+        <Quiz />
       )}
     </div>
   );

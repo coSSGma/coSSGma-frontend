@@ -11,7 +11,7 @@ export const styleHandler = [
 ]
 
 export const quizHandler = [
-  http.get(`/api/quiz`, () => {
+  http.get('/api/quiz', () => {
     return HttpResponse.json({
       data: quiz,
     });
