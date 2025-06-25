@@ -4,7 +4,7 @@ import backIcon from "../assets/backIcon.svg";
 export default function Layout() {
   const navigate = useNavigate();
   const location = useLocation();
-console.log(location.pathname);
+  
   const handleNavigate = () => {
     navigate(-1);
   }

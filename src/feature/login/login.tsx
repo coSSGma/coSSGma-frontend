@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import brudyIcon from '../../assets/brudy.svg';
+import loginBGIcon from '../../assets/loginbg.svg';
+import loginBGIcon2 from '../../assets/loginbg2.svg';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -47,6 +51,15 @@ const Login = () => {
   return (
     <>
       <div className="h-full">
+        <div className="absolute top-[11px] left-[-122px]">
+          <img src={loginBGIcon} alt="로그인 배경" width="367" height="367" />
+        </div>
+        <div className="absolute top-[334px] left-[107px]">
+          <img src={loginBGIcon2} alt="로그인 배경2" width="523" height="104" />
+        </div>
+        <div className="absolute top-[334px] left-[107px]">
+          <img src={brudyIcon} alt="브루디" width="341" height="362" />
+        </div>
         <div className="absolute p-30 top-200">
           <p className="text-[16px] text-[#455153] font-extrabold">
             혼자보다 함께,
