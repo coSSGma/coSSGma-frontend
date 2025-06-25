@@ -21,14 +21,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/learning-test" element={<LearingStyleTest />} />
         <Route path="/result" element={<TestResult />} />
         <Route path="/study-matching" element={<StudyMatching />} />
         <Route path="/matching-study-room" element={<MatchingLoading />} />
         <Route path="/matched-study-room" element={<MatchedStudyRoom />} />
         <Route path="/" element={<Layout />}>
-          <Route path="" element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="study-main" element={<StudyPage />} />
           <Route path="study-main/all-study-rooms" element={<AllStudyRoom />} />
           <Route path="study/info" element={<StudyInfo />} />
