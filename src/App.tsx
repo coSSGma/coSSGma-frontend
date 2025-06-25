@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './feature/login/login';\
-import Layout from './layout/Layout';\
+import Login from './feature/login/login';
+import Layout from './layout/Layout';
 import LearingStyleTest from './feature/learning-style-test/LearingStyleTest';
 import TestResult from './feature/learning-style-test/TestResult';
 import StudyPage from './feature/study/StudyPage';
