@@ -12,10 +12,12 @@ const StartScreen = () => {
             개별 맞춤 학습 성향을 테스트 해봐요!
           </div>
           {/* 이미지 영역 */}
-          <div className="w-full h-[250px] bg-gray-300 flex items-center justify-center rounded-lg mb-8 max-w-[calc(100%-60px)] mx-auto">
-            <span className="text-gray-500 text-4xl font-bold">
-              이미지 영역
-            </span>
+          <div className="w-full h-[250px] flex items-center justify-center rounded-lg mb-8 max-w-[calc(100%-60px)] mx-auto">
+            <img
+              src="src/assets/start-screen-brudy.svg"
+              alt="브루디 이미지"
+              className="w-full h-full object-contain"
+            />
           </div>
           <p className="text-[16px] text-[#455153] mt-[5%]">
             브루디는 6가지 학습 성향 중 하나를 분석해,

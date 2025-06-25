@@ -29,10 +29,6 @@ const TestResult = () => {
     setFeatures(mockResult.features);
   }, []); // 빈 의존성 배열로 한 번만 실행
 
-  // 임시 이미지 URL (실제 이미지로 교체 가능)
-  // 이미지와 동일한 크기와 X 표시가 있는 플레이스홀더를 사용합니다.
-  const styleImage = "https://via.placeholder.com/200x200/cccccc/000000?text=X"; // 회색 배경에 X 표시
-
   return (
     // QuestionScreen과 동일하게 전체 높이를 차지하고 상대적 위치를 가집니다.
     <div className="h-full">
@@ -48,11 +44,11 @@ const TestResult = () => {
         </h1>
 
         {/* 학습 성향에 따른 이미지 */}
-        <div className="w-[80%] max-w-[200px] h-[200px] mx-auto mb-[10%] flex items-center justify-center bg-gray-200 rounded-md overflow-hidden">
+        <div className="w-[80%] max-w-[200px] h-[200px] mx-auto mb-[10%] flex items-center justify-center rounded-md overflow-hidden">
           <img
-            src={styleImage}
+            src="src/assets/group-brudy.svg"
             alt="학습 성향 이미지"
-            className="w-[70%] h-[70%] object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
 
