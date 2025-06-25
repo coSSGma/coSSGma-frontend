@@ -16,18 +16,18 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route path='' element={<StudyPage />} />
-          <Route path='learning' element={<StudyStart />} />
-          <Route path='participate' element={<StudyGame />} />
-          <Route path='quiz/result' element={<QuizResult />} />
-        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/learning-test" element={<LearingStyleTest />} />
         <Route path="/result" element={<TestResult />} />
         <Route path="/study-matching" element={<StudyMatching />} />
         <Route path="/matching-study-room" element={<MatchingLoading />} />
         <Route path="/matched-study-room" element={<MatchedStudyRoom />} />
+        <Route path='/' element={<Layout />}>
+          <Route path='' element={<StudyPage />} />
+          <Route path='learning' element={<StudyStart />} />
+          <Route path='participate' element={<StudyGame />} />
+          <Route path='quiz/result' element={<QuizResult />} />
+        </Route>
       </Routes>
     </Router>
   );

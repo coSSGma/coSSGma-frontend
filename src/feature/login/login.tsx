@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    id: '',
     password: ''
   });
+  const [loginEvent, setLoginEvent] = useState(false);
 
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,7 +25,7 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: formData.email,
+        id: formData.id,
         password: formData.password,
       }),
     });
@@ -39,85 +40,81 @@ const Login = () => {
     }
   };
 
+  const handleStartLogin = () => {
+    setLoginEvent(true);
+  }
+
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center px-6 py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            로그인
-          </h1>
-          <p className="text-sm text-gray-600">
-            계정에 로그인하세요
-          </p>
-        </div>
+    <>
+    <div className='h-full'>
+      <div className='absolute p-30 top-200'>
+        <p className='text-[16px] text-[#455153] font-extrabold'>혼자보다 함께,<br />나와 잘 맞는 사람들과 자라는 공부</p>
+        <p className='text-[60px] text-[#1E624D] font-extrabold'>브루디</p>
       </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-6 shadow-sm rounded-lg">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                이메일
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base"
-                placeholder="이메일을 입력하세요"
-                value={formData.email}
-                onChange={handleLoginInputChange}
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                비밀번호
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base"
-                placeholder="비밀번호를 입력하세요"
-                value={formData.password}
-                onChange={handleLoginInputChange}
-              />
-            </div>
-
-            <div className="flex items-center justify-end">
-              <div className="text-sm">
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  비밀번호를 잊으셨나요?
-                </a>
+      {loginEvent && (
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-6 shadow-sm rounded-lg">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className='absolute bottom-80 w-full px-30'>
+                <div>
+                  <label htmlFor="id" className="block text-sm text-[#1E624D] font-extrabold text-[18px] mb-10">
+                    학번
+                  </label>
+                  <input
+                    id="id"
+                    name="id"
+                    type="id"
+                    autoComplete="id"
+                    required
+                    style={{ textIndent: '1rem' }}
+                    className="appearance-none relative block w-full px-4 py-3 text-[18px] border border-gray-300 placeholder-gray-400 text-[#1E624D] h-[49px] rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#1E624D] focus:border-[#1E624D] font-extrabold tracking-widest mb-30"
+                    placeholder="20123456"
+                    value={formData.id}
+                    onChange={handleLoginInputChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="block text-sm text-[#1E624D] font-extrabold text-[18px] mb-2">
+                    비밀번호
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    style={{ textIndent: '1rem' }}
+                    className="appearance-none relative block w-full px-4 py-3 text-[18px] border border-gray-300 placeholder-gray-400 text-[#1E624D] h-[49px] rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#1E624D] focus:border-[#1E624D] font-extrabold mb-50"
+                    placeholder="비밀번호를 입력하세요"
+                    value={formData.password}
+                    onChange={handleLoginInputChange}
+                  />
+                </div>
+                <button
+                  type='submit'
+                  disabled={!formData.id || !formData.password} 
+                  className=" w-full h-[62px] px-4 py-2 text-[20px] text-white bg-[#1E624D] rounded-3xl font-bold disabled:bg-[#A8A8A8]"
+                >
+                  다음
+                </button>
               </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-base font-medium rounded-lg text-white bg-black hover:bg-[rgb(80,80,80)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
-              >
-                로그인
-              </button>
-            </div>
-
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                계정이 없으신가요?{' '}
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  회원가입
-                </a>
-              </p>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
+      <div></div>
+      {!loginEvent && (
+        <div className='absolute bottom-80 w-full px-30'>
+          <button
+            onClick={handleStartLogin}
+            className=" w-full h-[62px] px-4 py-2 text-[20px] text-white bg-[#1E624D] rounded-3xl font-bold"
+          >
+            브루디 시작하기
+          </button>
+        </div>
+      )}
     </div>
+    </>
   );
 };
 

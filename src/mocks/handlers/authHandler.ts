@@ -1,29 +1,28 @@
 import { http, HttpResponse } from "msw";
 
 interface LoginProp {
-  email: string,
+  id: string,
   password: string,
 }
 
 export const authHandler = [
   http.post(`/api/login`, async({ request }) => {
     const body = await request.json() as LoginProp;
-    const { email, password } = body;
-    console.log(body);
+    const { id, password } = body;
     
     const mockUser = {
-      id: 1,
+      userid: 1,
       name: "홍길동",
-      email: "1234@naver.com",
+      id: "12345678",
       password: "1234",
     };
 
-    if (email === mockUser.email && password === mockUser.password) {
+    if (id === mockUser.id && password === mockUser.password) {
       return HttpResponse.json({
         data: {
-          id: mockUser.id,
+          userid: mockUser.userid,
           name: mockUser.name,
-          email: mockUser.email,
+          id: mockUser.id,
         },
       });
     };
