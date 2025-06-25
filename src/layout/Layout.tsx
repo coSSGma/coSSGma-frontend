@@ -45,7 +45,7 @@ export default function Layout() {
       <footer className="bg-white h-[105px] flex justify-evenly">
         {location.pathname === "/" ? (<img src={homeGreen} alt="홈" width='21px' height='53px' className="" />) 
         : (<img src={homeGray} alt="홈" width='21px' height='53px' onClick={() => navigate('/')} />)}
-        {location.pathname === "/study" ? (<img src={studyGreen} alt="스터디" width='36px' height='56px' />) 
+        {location.pathname === "/study-main" ? (<img src={studyGreen} alt="스터디" width='36px' height='56px' />) 
         : (<img src={studyGray} alt="스터디" width='36px' height='56px' onClick={() => navigate('/study')} />)}
         {location.pathname === "/ranking" ? (<img src={rankingGreen} alt="랭킹" width='28px' height='56px' />) 
         : (<img src={rankingGray} alt="랭킹" width='28px' height='56px' onClick={() => navigate('/ranking')} />)}
