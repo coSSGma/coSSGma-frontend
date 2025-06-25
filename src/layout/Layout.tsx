@@ -73,7 +73,7 @@ export default function Layout() {
             onClick={() => navigate("/")}
           />
         )}
-        {location.pathname === "/study" ? (
+        {location.pathname.startsWith("/study") ? (
           <img src={studyGreen} alt="스터디" width="36px" height="56px" />
         ) : (
           <img
@@ -84,7 +84,7 @@ export default function Layout() {
             onClick={() => navigate("/study-main")}
           />
         )}
-        {location.pathname === "/ranking" ? (
+        {location.pathname.startsWith("/ranking") ? (
           <img src={rankingGreen} alt="랭킹" width="28px" height="56px" />
         ) : (
           <img
@@ -95,7 +95,7 @@ export default function Layout() {
             onClick={() => navigate("/ranking")}
           />
         )}
-        {location.pathname === "/mypage" ? (
+        {location.pathname.startsWith("/mypage") ? (
           <img src={mypageGreen} alt="마이페이지" width="59px" height="56px" />
         ) : (
           <img

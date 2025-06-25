@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import tableIcon from "../../../assets/study_table.svg";
+import tableIcon from "../../../assets/studydesk.svg";
 import playIcon from "../../../assets/play.svg";
 import memberIcon from "../../../assets/member.svg";
 import backIcon from "../../../assets/prev.svg";
 import nextIcon from "../../../assets/next.svg";
 import bromem from "../../../assets/bromem.svg";
 import star2 from "../../../assets/star2.svg";
+import quiz from "../../../assets/quiz.svg";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../../../store/useAuthStore";
 
@@ -132,8 +133,8 @@ const StudyInfo = () => {
           className="w-full h-[66px] rounded-xl bg-white flex items-center py-[10px] px-[20px] justify-between"
           onClick={() => handleMenu("participate")}
         >
-          <div className="w-27 h-27 rounded-full bg-[#BCBCBC]"></div>
-          <h2 className="text-right text-[20px] text-[#006244] font-extrabold">
+          <img src={quiz} alt="star2" width={30} height={26} />
+          <h2 className="text-right text-[20px] text-[#006244] font-bold">
             그룹 퀴즈 참가하기
           </h2>
         </div>
