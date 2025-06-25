@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // React Router 사용
 
 // Mock Data (백엔드 응답을 모방)
 const mockResult = {
@@ -17,6 +18,7 @@ const TestResult = () => {
   const [learningStyle, setLearningStyle] = useState<string>(mockResult.learningStyle);
   const [matchingPartner, setMatchingPartner] = useState<string>(mockResult.matchingPartner);
   const [features, setFeatures] = useState<string[]>(mockResult.features);
+  const navigate = useNavigate(); // 경로 이동을 위한 navigate 훅
 
   // useEffect를 사용하여 백엔드 호출 대신 mock data 사용 (테스트용)
   useEffect(() => {
@@ -70,7 +72,7 @@ const TestResult = () => {
       {/* 이미지의 버튼처럼 넓이, 패딩, 둥근 모서리, 배경색, 그림자 등을 조정합니다. */}
       <button
         className="w-[80%] max-w-md py-15 rounded-3xl bg-blue-500 text-white mt-[40%] hover:bg-blue-600 transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        onClick={() => console.log('그룹방 매칭으로 이동')}
+        onClick={() => navigate("/study-matching")} // 이 부분이 이미 /study-matching 경로로 이동시킵니다.
       >
         그룹방 매칭하러 가기
       </button>
