@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import brudyIcon from '../../assets/brudy.svg';
 import loginBGIcon from '../../assets/loginbg.svg';
 import loginBGIcon2 from '../../assets/loginbg2.svg';
+import { useAuthStore } from "../../store/useAuthStore";
 
 
 const Login = () => {
   const navigate = useNavigate();
+  // const example = useExampleStore(state => state.example);
+  const setUserId = useAuthStore(state => state.setUserId);
+  const setName = useAuthStore(state => state.setName);
   const [formData, setFormData] = useState({
     id: "",
     password: "",
@@ -37,6 +41,8 @@ const Login = () => {
     if (res.ok) {
       const result = await res.json();
       console.log("로그인 성공", result);
+      setUserId(result.data.userid);
+      setName(result.data.name);
       navigate("/learning-test");
     } else {
       const error = await res.json();

@@ -1,5 +1,6 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import backIcon from "../assets/backIcon.svg";
+import settingIcon from "../assets/Setting.svg";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Layout() {
         <div className="w-full h-50 flex justify-between">
           <span className="ml-30 mt-5" onClick={handleNavigate}><img src={backIcon} alt="뒤로가기" width="11" height="25" /></span>
           <p className={`text-[18px] font-extrabold ${textColor}`}>톡스터디</p>
-          <span className="w-[41px]"></span>
+          <span className="mr-[15px] mt-5"><img src={settingIcon} alt="설정" width="26" height="26" /></span>
         </div>
       </header>
       <main className="relative flex-1 min-h-0 overflow-y-auto">
