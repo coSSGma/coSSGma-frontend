@@ -33,7 +33,7 @@ function App() {
           <Route path="study/info" element={<StudyInfo />} />
           <Route path="study/info/learning" element={<StudyStart />} />
           <Route path="study/info/participate" element={<StudyGame />} />
-          <Route path="study/info/quiz/result" element={<QuizResult />} />
+          <Route path="quiz/result" element={<QuizResult />} />
           <Route path="ranking" element={<RankingHome />} />
         </Route>
       </Routes>

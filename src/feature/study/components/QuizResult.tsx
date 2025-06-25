@@ -1,76 +1,80 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useMemo, useState } from "react";
 
-interface Submission {
-  question: string;
-  selected: string | null;
+interface SubmissionProp {
   answer: string;
-}
-
-interface Result {
   question: string;
-  feedback: string;
-  correct: boolean;
-}
-
-interface ApiResponse {
-  results: Result[];
-  analysis: string;
-  methods: string[];
-  scoreSummary: string;
-  progressFeedback: string;
+  selected: string;
 }
 
 const QuizResult = () => {
   const { state } = useLocation();
-  const submissions = state?.submissions || [];
-  const [resultData, setResultData] = useState<ApiResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const submissions: SubmissionProp[] = state?.submissions || [];
+  const [view, setView] = useState(false);
 
-  useEffect(() => {
-    const fetchResult = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/quiz/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            submissions,
-          }),
-        });
-        if (!response.ok) {
-          throw new Error("결과를 불러오지 못했습니다.");
-        }
-        const data: ApiResponse = await response.json();
-        setResultData(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "알 수 없는 오류 발생");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // 정답 수 계산
+  const correctCount = useMemo(() =>
+    submissions.filter((sub) => sub.answer === sub.selected).length
+  , [submissions]);
 
-    fetchResult();
-  }, [submissions]);
-
-  if (loading) {
-    return <div>결과를 불러오는 중입니다...</div>;
+  const handleNext = () => {
+    setView(true);
   }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!resultData) {
-    return <div>결과 데이터가 없습니다.</div>;
-  }
-
-console.log(resultData);
 
   return (
-    <div>퀴즈 결과 임시 창</div>
+    <div className="flex flex-col items-center justify-center bg-white">
+      {!view && (
+        <div className="w-[350px] bg-white rounded-2xl shadow-md p-8 flex flex-col items-center">
+        <p className="text-[20px] font-bold text-[#1E624D] mb-2">과학사 퀴즈 결과</p>
+        <div className="text-center text-[14px] text-[#1E624D] mb-4">
+          <p>사용자: 홍길동</p>
+          <p>일시: 2025.06.25</p>
+          <p>정답 수: <span className="font-bold">{correctCount}/{submissions.length}</span></p>
+        </div>
+        <div className="w-full bg-[#F8FAF9] rounded-xl border border-[#E2E8F0] p-4">
+          <div className="flex items-center mb-2">
+            <span className="w-[40px] text-[15px] font-bold text-[#1E624D]">오답</span>
+            <span className="flex-1 text-[15px] font-bold text-[#1E624D] text-center"> </span>
+          </div>
+          {submissions.map((sub, index) => (
+            <div key={index} className="flex items-center py-1 border-b last:border-b-0 border-[#E2E8F0]">
+              <span className="w-[30px] text-[15px] text-[#1E624D] font-bold">{String(index + 1).padStart(2, '0')}</span>
+              <span className="flex-1 text-[15px] text-[#1E624D] text-center">{sub.answer}</span>
+              {sub.answer === sub.selected ? (
+                <span className="w-[18px] h-[18px] rounded-full bg-green-400 inline-block ml-2"></span>
+              ) : (
+                <span className="w-[18px] h-[18px] rounded-full bg-red-400 inline-block ml-2"></span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+      )}
+      {view && (
+        <div className="w-[340px] bg-white rounded-2xl shadow-md p-6 border border-[#E2E8F0] flex flex-col gap-5 mt-10">
+          <div>
+            <p className="text-[17px] font-bold text-[#1E624D] mb-2">현재 성향 분석</p>
+            <p className="text-[14px] text-[#222] leading-relaxed whitespace-pre-line">
+              고대~중세 과학사에는 익숙하고 배경지식이 있음\n근대~현대 과학사의 과학자 업적/과학 혁명의 흐름에는 약함\n사건의 맥락보다는 인물과 업적을 구분하는 데에 어려움이 있음
+            </p>
+          </div>
+          <div>
+            <p className="text-[17px] font-bold text-[#1E624D] mb-2">추천 학습 방식</p>
+            <ul className="text-[14px] text-[#222] leading-relaxed list-disc list-inside space-y-1">
+              <li>“타임라인 중심 학습” – 과학사의 흐름을 시각적으로 정리하기</li>
+              <li>스토리 기반 영상 시청 – 인물 중심 다큐/영상으로 접근하기</li>
+              <li>“인물 카드 만들기” – 과학자별 한 장 요약 카드</li>
+            </ul>
+          </div>
+        </div>
+      )}
+      <button 
+        onClick={handleNext}
+        className="absolute bottom-[40px] w-[309px] h-62 rounded-3xl bg-[#1E624D] text-white"
+      >
+        다음
+      </button>
+    </div>
   );
 };
 
