@@ -4,25 +4,36 @@ const StartScreen = () => {
   const { goNext } = useLearningStyleTestStore();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100">
-      <div className="w-full max-w-[430px] h-screen bg-white flex flex-col items-center justify-center px-4 shadow-lg">
-        {/* 이미지 영역 */}
-        <div className="w-4/5 aspect-square bg-gray-300 flex items-center justify-center mb-8 rounded-lg max-w-xs sm:max-w-sm">
-          <span className="text-gray-500 text-2xl sm:text-3xl md:text-4xl">이미지</span>
+    <>
+      <div className="h-full">
+        <div className="absolute p-30 top-100 w-full text-center">
+          <div className="text-[#455153] text-[18px] font-bold mb-[20%]">
+            브루디와 함께 <br />
+            개별 맞춤 학습 성향을 테스트 해봐요!
+          </div>
+          {/* 이미지 영역 */}
+          <div className="w-full h-[250px] bg-gray-300 flex items-center justify-center rounded-lg mb-8 max-w-[calc(100%-60px)] mx-auto">
+            <span className="text-gray-500 text-4xl font-bold">
+              이미지 영역
+            </span>
+          </div>
+          <p className="text-[16px] text-[#455153] mt-[5%]">
+            브루디는 6가지 학습 성향 중 하나를 분석해,
+            <br />
+            당신에게 가장 잘 맞는 스터디 그룹을 추천해줘요
+          </p>
         </div>
-        {/* 설명 텍스트 */}
-        <p className="mb-10 text-center text-gray-700 text-base sm:text-lg md:text-xl px-2 sm:px-4 max-w-xs sm:max-w-sm">
-          나만의 학습 패턴을 알아봐요 어쩌구
-        </p>
-        {/* 버튼 */}
-        <button
-          className="w-full max-w-xs py-3 rounded-3xl bg-gray-200 text-gray-700 text-base font-semibold hover:bg-gray-300 transition mt-4"
-          onClick={goNext}
-        >
-          테스트 시작하기
-        </button>
+        {/* 버튼 위치를 Login.tsx와 동일하게 맞춤 */}
+        <div className="absolute bottom-80 w-full px-30">
+          <button
+            onClick={goNext}
+            className=" w-full h-[62px] px-4 py-2 text-[20px] text-white bg-[#1E624D] rounded-3xl font-bold"
+          >
+            테스트 시작하기
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
