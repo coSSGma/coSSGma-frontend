@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 
 interface SubmissionProp {
@@ -11,6 +11,7 @@ const QuizResult = () => {
   const { state } = useLocation();
   const submissions: SubmissionProp[] = state?.submissions || [];
   const [view, setView] = useState(false);
+  const navigate = useNavigate();
 
   // 정답 수 계산
   const correctCount = useMemo(() =>
@@ -18,7 +19,11 @@ const QuizResult = () => {
   , [submissions]);
 
   const handleNext = () => {
-    setView(true);
+    if(!view) {
+      setView(true);
+    } else {
+      navigate('/study/info');
+    }
   }
 
   return (

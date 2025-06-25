@@ -15,6 +15,7 @@ import AllStudyRoom from "./feature/study/components/AllStudyRoom";
 import StudyInfo from "./feature/study/components/StudyInfo";
 import RankingHome from "./feature/ranking/RangingHome";
 import Home from "./feature/home/Home";
+import MyPage from "./feature/mypage/MyPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="study/info/participate" element={<StudyGame />} />
           <Route path="quiz/result" element={<QuizResult />} />
           <Route path="ranking" element={<RankingHome />} />
+          <Route path="mypage" element={<MyPage />} />
         </Route>
       </Routes>
     </Router>

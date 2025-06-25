@@ -120,7 +120,7 @@ const StudyInfo = () => {
         </div>
         <div
           className="w-full h-[66px] rounded-xl bg-white flex items-center py-[10px] px-[20px] justify-between"
-          onClick={() => handleMenu("ranking")}
+          onClick={() => handleMenu("/ranking")}
         >
           <div className="w-27 h-27 rounded-full bg-[#BCBCBC]"></div>
           <h2 className="text-right text-[20px] text-[#006244] font-bold">
