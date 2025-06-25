@@ -22,7 +22,6 @@ export default function Layout() {
     location.pathname === "/learning" ? "bg-[#2E443E]" : "bg-[#F1F5F4]";
   const textColor =
     location.pathname === "/learning" ? "text-white" : "text-black";
-  const title = location.pathname === "/" ? "브루디" : "톡스터디";
 
   return (
     <div className={`h-screen flex flex-col`}>
