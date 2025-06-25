@@ -11,6 +11,7 @@ import MatchingLoading from './feature/matching/MatchingLoading';
 import MatchedStudyRoom from './feature/matching/MatchedStudyRoom';
 import StudyGame from './feature/study/components/StudyGame';
 import QuizResult from './feature/study/components/QuizResult';
+import Home from './feature/home/Home';
 
 function App() {  
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/matching-study-room" element={<MatchingLoading />} />
         <Route path="/matched-study-room" element={<MatchedStudyRoom />} />
         <Route path='/' element={<Layout />}>
+          <Route path='' element={<Home />} />
           <Route path='study' element={<StudyPage />} />
           <Route path='learning' element={<StudyStart />} />
           <Route path='participate' element={<StudyGame />} />
