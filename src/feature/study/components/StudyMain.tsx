@@ -64,6 +64,7 @@ const StudyMain = () => {
         <div className="flex flex-col gap-4 mb-8">
           {participatingStudyRooms.map((room) => (
             <div
+              onClick={() => navigate('/study/info')}
               key={room.id}
               className="bg-white rounded-xl shadow-sm p-4 flex flex-col items-start border-1 border-[#C7C7C7] mb-[10px]"
             >
