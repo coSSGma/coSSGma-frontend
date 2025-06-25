@@ -27,7 +27,7 @@ function App() {
           <Route path='' element={<Home />} />
           <Route path='study' element={<StudyPage />} />
           <Route path='learning' element={<StudyStart />} />
-          <Route path='participate' element={<StudyGame />} />
+          <Route path='study/participate' element={<StudyGame />} />
           <Route path='quiz/result' element={<QuizResult />} />
         </Route>
       </Routes>
